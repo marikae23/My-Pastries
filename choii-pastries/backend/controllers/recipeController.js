@@ -1,21 +1,30 @@
+// backend/controllers/recipeController.js
+
 const Recipe = require('../models/Recipe');
 
-exports.createRecipe = async (req, res) => {
-    const { title, ingredients, instructions, userId } = req.body;
-    const recipe = new Recipe({ title, ingredients, instructions, user: userId });
-    await recipe.save();
-    res.status(201).send(recipe);
+exports.createRecipe = async (req, res, next) => {
+  try {
+    const { title, description, ingredients, instructions, image } = req.body;
+    const newRecipe = new Recipe({
+      title,
+      description,
+      ingredients,
+      instructions,
+      image,
+      creator: req.userData.userId, // userId extraído do token JWT
+    });
+    const result = await newRecipe.save();
+    res.status(201).json({ message: 'Receita criada com sucesso.', recipe: result });
+  } catch (error) {
+    next(error);
+  }
 };
 
-exports.getRecipes = async (req, res) => {
-    const recipes = await Recipe.find().populate('user', 'username');
-    res.send(recipes);
-};
-
-exports.rateRecipe = async (req, res) => {
-    const { rating, userId } = req.body;
-    const recipe = await Recipe.findById(req.params.id);
-    recipe.ratings.push({ user: userId, rating });
-    await recipe.save();
-    res.send(recipe);
+exports.getAllRecipes = async (req, res, next) => {
+  try {
+    const recipes = await Recipe.find().exec();
+    res.status(200).json(recipes);
+  } catch (error) {
+    next(error);
+  }
 };

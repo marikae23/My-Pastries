@@ -1,132 +1,97 @@
 <template>
-    <section>
-      <header>
-        <a href="#"><img src="https://64.media.tumblr.com/1936810ee5acb3bdb6788245bbc1913e/541a4958c10d89bb-ec/s640x960/21641a93473dd520d5b8e85b6b41232031bbbec4.pnj" class="logo"></a>
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/menu">Menu</router-link></li>
-          <li><router-link to="/aboutus">About us</router-link></li>
-          <li><router-link to="/login">Login</router-link></li>
-        </ul>
-      </header>
-      <div class="content">
-        <div class="textBox">
-          <h2>Welcome to<br><span>Choii </span> pastries!</h2>
-          <p>Embrace the artistry of baking with our curated collection of exquisite recipes, meticulously crafted by talented artisans and seasoned pastry connoisseurs. From the delicate flakiness of French croissants to the decadent richness of velvety chocolate cakes, each creation embodies the essence of indulgence and refinement.</p>
-          <p>Join our community and share your own baking masterpieces. Let's bake memories together!</p>
-          <button class="btn-21"><span>Let's go!</span></button>
-        </div>
-        <div>
-          <img src="https://64.media.tumblr.com/054b12bd5cfc909ef84aafcd1f05ed2c/56235be97afe8473-19/s500x750/7bf7864488a030a3e2c41fcfba48ea953c7e8e61.pnj" class="cake">
-          <img src="https://64.media.tumblr.com/412fd0f6d8f95dd3c030e676bdbe2ead/f5f9d2dd82d83c43-e9/s1280x1920/66d7d343f033db1ad8ae7a3d8c99dd5c6156586c.pnj" class="flower">
-        </div>
-      </div>
-      <ul class="thumb">
-        <li><img src="https://64.media.tumblr.com/5926c18934b4b63c0cd6db97e5646739/119c9d60fa5bba8d-d3/s400x600/536642ff070e4b49ca3e616590f7cbaf0a08d498.pnj"></li>
-        <li><img src="https://64.media.tumblr.com/9861e8d5f7de632d165022b7e8c284d1/119c9d60fa5bba8d-0e/s400x600/a62ab8e665b04108c3732a944840744b61b99573.pnj"></li>
-        <li><img src="https://64.media.tumblr.com/366150cc36ce460716913b18bf5fd69c/119c9d60fa5bba8d-95/s400x600/4c4b183408c4260faeca4b542ecb61ce719b814f.pnj"></li>
+  <div id="app">
+    <header>
+      <a href="#"><router-link to="/"><img src="https://64.media.tumblr.com/cc89fef611b4e584e8cc48afe5637586/541a4958c10d89bb-35/s640x960/12cabb23a9cd0368f7aa3c5ab868b3041023cb2c.pnj" class="logo"></router-link></a>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/menu">Menu</router-link></li>
+        <li><router-link to="/aboutus">About us</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
       </ul>
-    </section>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        // Se precisar de dados específicos do componente, coloque-os aqui
-      };
-    },
-    methods: {
-      // Se precisar de métodos específicos do componente, coloque-os aqui
+    </header>
+    <router-view></router-view>
+    <footer v-if="!isHome">
+      <div class="footer-content">
+        <div class="social-media">
+          <a href="#"><img src="https://img.icons8.com/?size=100&id=wDv7lZUqdFyQ&format=png&color=000000" alt="Pinterest"></a>
+          <a href="#"><img src="https://img.icons8.com/?size=100&id=bVGqATNwfhYq&format=png&color=000000" alt="Github"></a>
+          <a href="#"><img src="https://img.icons8.com/?size=100&id=UrgbzHxXKotn&format=png&color=000000" alt="Instagram"></a>
+        </div>
+        <p>&copy; 2023 Choii Pastries. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  computed: {
+    isHome() {
+      return this.$route.path === '/';
     }
   }
-  </script>
-  
-  <style scoped>
-  @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-*
+};
+</script>
 
-{
-    margin: 0;
-    padding:0;
-    box-sizing: border-box;
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 
-    font-family: 'Poppins', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-section{
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    padding: 10px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f0efeb;
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Evita estouro horizontal */
 }
 
-header{
-    background-color: #cb997e;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px 100px;
+  background-color: #f2e9e4;
 }
 
-header .logo{
-    position: relative;
-    max-width: 95px;
+header {
+  background-color: #4a4e69;
+  position: fixed; /* Fixando a posição do header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
 }
 
-header ul{
-    position: relative;
-    display: flex;
+header .logo {
+  max-width: 95px;
 }
 
-header ul li{
-    list-style: none;
+header ul {
+  display: flex;
 }
 
-header ul li a{
-    display: inline-block;
-    color: #333;
-    font-weight: 600;
-    margin-left: 40px;
-    text-decoration: none;
+header ul li {
+  list-style: none;
 }
 
-.content{
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header ul li a {
+  color: #22223b;
+  font-weight: 600;
+  margin-left: 40px;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Adiciona uma transição suave para a mudança de cor */
 }
 
-.content .textBox{
-    position: relative;
-    max-width: 750px;
-}
-
-.content .textBox h2{
-    color: #333;
-    font-size: 3.0em;
-    font-weight: 900;
-}
-
-.content .textBox h2 span{
-    color: #ef476f;
-    font-size: 1.5em;
-    font-weight: 900;
-}
-
-.content .textBox p{
-    color: #333;
-    
+header ul li a:hover {
+  color: #ef476f; /* Cor que o texto deve mudar ao passar o mouse por cima */
 }
 
 .btn-21,
@@ -226,61 +191,42 @@ header ul li a{
   }
 }
 
-.content .cake {
-    position: absolute;
-    margin-right: 20px;
-    max-width: auto;
-    height: 550px;
-    top: 48%;
-    left: 85%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-
-  }
-
-.content .flower {
-    position: absolute;
-    height: 160px;
-    top: 74%;
-    left: 88%;
-  
-  }
-
-.thumb{
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    display: flex;
+footer {
+  background-color: #4a4e69; /* Mesma cor de fundo do header */
+  color: #fff;
+  padding: 20px 100px;
+  text-align: center;
+  margin-top: 20px; /* Adiciona um espaço no topo do footer */
 }
 
-.thumb li{
-    list-style: none;
-    display: inline-block;
-    margin: 0 20px;
-    cursor: pointer;
-    transition: 0.5s;
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.thumb li:hover{
-    transform: translateY(-15px);
+footer .social-media {
+  margin-bottom: 10px;
 }
 
-.thumb li img{
-    margin-top: 60px;
-    width: 110px;
-    height: auto;
+footer .social-media a {
+  margin: 0 10px;
+  text-decoration: none;
 }
 
-.sci{
-    position: absolute;
-    top: 50%;
-    right: 30px;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+footer .social-media img {
+  width: 30px;
+  height: 30px;
 }
-  </style>
-  
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #f2e9e4; /* Define o fundo preto para toda a página */
+}
+
+.auth-container {
+  background: #c9ada7; /* Fundo branco para a caixa de signup */
+}
+</style>

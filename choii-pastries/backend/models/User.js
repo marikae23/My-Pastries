@@ -1,8 +1,10 @@
+// backend/models/User.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+  googleId: String,
+  facebookId: String,
+  twitterId: String
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -1,20 +1,25 @@
 {
-    "name": "frontend",
+    "name": "choii-pastries-frontend",
     "version": "1.0.0",
-    "description": "Frontend for My Skincare Magazine",
-    "main": "main.js",
+    "private": true,
     "scripts": {
-        "serve": "vue-cli-service serve"
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
     "dependencies": {
         "axios": "^1.7.2",
-        "vue": "^2.7.16",
-        "vue-router": "^3.6.5"
+        "core-js": "^3.6.5",
+        "vue": "^2.6.11",
+        "vue-router": "^3.2.0"
     },
     "devDependencies": {
-        "@vue/cli-service": "^5.0.8"
+        "@vue/cli-service": "^5.0.8",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "sass": "^1.32.7",
+        "sass-loader": "^10.1.1",
+        "vue-loader": "^17.4.2"
     }
 }

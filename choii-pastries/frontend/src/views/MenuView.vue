@@ -1,192 +1,151 @@
 <template>
-    <div>
-        <!-- Nav e logo -->
-        <header>
-            <a href="#"><img src="https://64.media.tumblr.com/1936810ee5acb3bdb6788245bbc1913e/541a4958c10d89bb-ec/s640x960/21641a93473dd520d5b8e85b6b41232031bbbec4.pnj" class="logo"></a>
-            <ul>
-                <li><a href="Home.vue">Home</a></li>
-                <li><a href="Menu.vue">Menu</a></li>
-                <li><a href="AboutUs.vue">About us</a></li>
-                <li><a href="Login.vue">Login</a></li>
-            </ul>
-        </header>
-  
-        <!-- Conteúdo principal -->
-        <div class="content">
-            <div class="textBox">
-                <h2>Choose your <span>favorite</span>!</h2>
-                <p>Find Your Favorite Recipe Here! Explore our collection and choose the recipe that excites your taste buds. Whether you're looking for something new or a beloved classic, we have the perfect recipe waiting for you!</p>
-            </div>
-        </div>
-  
-        <!-- Containers das receitas -->
-        <section class="products">
-            <div class="product-container">
-                <div class="product" v-for="(recipe, index) in recipes" :key="index">
-                    <img :src="recipe.image" :alt="`Recipe ${index + 1}`">
-                    <h3>{{ recipe.title }}</h3>
-                    <p>{{ recipe.description }}</p>
-                </div>
-            </div>
-        </section>
-  
-        <section id="about-us">
-            <div class="content2">
-                <div class="textBox2">
-                    <h2>Choose your <span>favorite</span>!</h2>
-                    <p>Find Your Favorite Recipe Here! Explore our collection and choose the recipe that excites your taste buds. Whether you're looking for something new or a beloved classic, we have the perfect recipe waiting for you!</p>
-                </div>
-            </div>
-        </section>
+  <section>
+    <div class="content">
+      <div class="textBox">
+        <h2>Our <span>Menu</span>!</h2>
+        <p>Find Your Favorite Recipe Here! Explore our collection and choose the recipe that excites your taste buds. Whether you're looking for something new or a beloved classic, we have the perfect recipe waiting for you!</p>
+        <router-link to="/create-recipe">
+          <button class="btn-21"><span>Create a recipe</span></button>
+        </router-link>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'MenuPage',
-    data() {
-        return {
-            recipes: [
-                { image: 'https://via.placeholder.com/200', title: 'Recipe 1', description: 'Delicious and easy to make.' },
-                { image: 'https://via.placeholder.com/200', title: 'Recipe 2', description: 'Perfect for any occasion.' },
-                // Adicione mais receitas aqui
-            ]
-        }
+    <section>
+      <div class="menu">
+        <!-- Exemplos de Receitas -->
+        <router-link v-for="recipe in recipes" :key="recipe.id" :to="'/recipe/' + recipe.id">
+          <div class="recipe-card">
+            <img :src="recipe.imageUrl" :alt="recipe.title + ' Image'" class="recipe-image" />
+            <div class="recipe-details">
+              <h3>{{ recipe.title }}</h3>
+              <p>{{ recipe.description }}</p>
+              <router-link :to="'/recipe/' + recipe.id">View Recipe</router-link>
+            </div>
+          </div>
+        </router-link>
+        <!-- Fim dos Exemplos de Receitas -->
+      </div>
+    </section>
+  </section>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+  name: 'MenuView',
+  computed: {
+    ...mapState(['recipesSent'])
+  },
+  methods: {
+    fetchRecipes() {
+      // Aqui você pode buscar as receitas do servidor ao inicializar o componente
+      // Exemplo: this.$store.dispatch('fetchRecipes');
     }
+  },
+  created() {
+    this.fetchRecipes();
   }
-  </script>
-  
-  <style scoped>
-  @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  body {
-    background: #f0efeb;
-  }
-  
-  header {
-    background-color: #cb997e;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  header .logo {
-    position: relative;
-    max-width: 95px;
-  }
-  
-  header ul {
-    position: relative;
-    display: flex;
-  }
-  
-  header ul li {
-    list-style: none;
-  }
-  
-  header ul li a {
-    display: inline-block;
-    color: #333;
-    font-weight: 600;
-    margin-left: 40px;
-    text-decoration: none;
-  }
-  
-  .content {
-    text-align: center;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 100px auto 20px;
-    padding: 20px;
-  }
-  
-  .content .textBox {
-    position: relative;
-    max-width: 59%;
-    margin-bottom: 20px;
-  }
-  
-  .content .textBox h2 {
-    color: #333;
-    font-size: 3.0em;
-    font-weight: 900;
-  }
-  
-  .content .textBox h2 span {
-    color: #ef476f;
-    font-size: 1em;
-    font-weight: 900;
-  }
-  
-  .content .textBox p {
-    color: #333;
-  }
-  
-  .products {
-    text-align: center;
-    padding: 0% 7%;
-    margin-top: 20px; /* Ajusta a margem superior */
-  }
-  
-  .products h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .product {
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    width: 16%;
-    height: 290px;
-    text-align: center;
-    transition: transform 0.2s;
-  }
-  
-  .product:hover {
-    transform: scale(1.05);
-  }
-  
-  .product img {
-    width: 100%;
-    height: auto;
-    max-height: 150px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-  }
-  
-  .product h3 {
-    font-size: 1em;
-    margin: 10px 0;
-  }
-  
-  .product p {
-    font-size: 0.8em;
-    color: #666;
-  }
-  </style>
-  
+};
+</script>
+
+
+<style scoped>
+section {
+  min-height: 100vh;
+  padding: 10px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto 20px;
+  padding: 20px;
+}
+
+.content .textBox {
+  position: relative;
+  max-width: 59%;
+}
+
+.content .textBox h2 {
+  color: #22223b;
+  font-size: 3.0em;
+  font-weight: 900;
+}
+
+.content .textBox h2 span {
+  color: #ef476f;
+  font-size: 1em;
+  font-weight: 900;
+}
+
+.content .textBox p {
+  color: #4a4e69;
+}
+
+.menu {
+  display: flex;  /* Usar flexbox para alinhar os itens lado a lado */
+  justify-content: center;  /* Centralizar os itens na linha */
+  flex-wrap: wrap;  /* Permitir que os itens sejam quebrados em várias linhas, se necessário */
+  gap: 20px;  /* Espaçamento entre os itens */
+  margin: 20px 0;
+}
+
+.recipe-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 250px;  /* Definir largura fixa para os cartões */
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.recipe-card .recipe-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.recipe-card .recipe-details {
+  margin-top: 10px;
+}
+
+.recipe-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.recipe-card p {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.router-link {
+  display: block;
+  background-color: #cb997e;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.router-link:hover {
+  background-color: #af7a5f;
+}
+</style>
