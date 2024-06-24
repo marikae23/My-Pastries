@@ -13,21 +13,21 @@ export default new Vuex.Store({
         id: 1,
         title: 'Chocolate Cake',
         description: 'Delicious and rich chocolate cake perfect for dessert.',
-        imageUrl: 'path/to/chocolate-cake.jpg' // Substitua pelo caminho real da imagem
+        imageUrl: 'path/to/chocolate-cake.jpg' 
       },
       {
         id: 2,
         title: 'Caesar Salad',
         description: 'Fresh and healthy Caesar salad with a creamy dressing.',
-        imageUrl: 'path/to/caesar-salad.jpg' // Substitua pelo caminho real da imagem
+        imageUrl: 'path/to/caesar-salad.jpg' 
       },
       {
         id: 3,
         title: 'Spaghetti Carbonara',
         description: 'Classic Italian pasta with eggs, cheese, pancetta, and pepper.',
-        imageUrl: 'path/to/spaghetti-carbonara.jpg' // Substitua pelo caminho real da imagem
+        imageUrl: 'path/to/spaghetti-carbonara.jpg' 
       }
-      // Adicione mais receitas conforme necessário
+      
     ],
     savedRecipes: [],
     recipe: null

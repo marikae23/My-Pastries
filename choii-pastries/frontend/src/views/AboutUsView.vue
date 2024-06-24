@@ -84,13 +84,13 @@ section {
 }
 
 .cake {
-  width: 40%; /* Reduzindo o tamanho das imagens */
+  width: 40%; 
   height: auto;
   margin-left: 19px;
 }
 
 .small-image {
-  max-width: 100%; /* Garante que as imagens não ultrapassem o tamanho máximo */
+  max-width: 100%; 
 }
 
 .content2 {
@@ -103,14 +103,14 @@ section {
 }
 
 .cake2 {
-  width: 34%; /* Reduzindo o tamanho das imagens */
+  width: 34%; 
   height: auto;
   margin-left: 19px;
 }
 
 .brown-background {
-  background-color: #f4acb7; /* Defina a cor de fundo desejada */
-  padding: 20px; /* Adicione padding para separar o conteúdo da borda */
-  border-radius: 10px; /* Arredonda as bordas do fundo */
+  background-color: #f4acb7; 
+  padding: 20px; 
+  border-radius: 10px; 
 }
 </style>

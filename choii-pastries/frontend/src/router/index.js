@@ -8,7 +8,7 @@ import LoginView from '../views/LoginView.vue';
 import SignupView from '../views/SignupView.vue';
 import RecipeDetailView from '../views/RecipeDetailView.vue';
 import CreateRecipeView from '../views/CreateRecipeView.vue';
-import store from '../store'; // Importe a store
+import store from '../store'; 
 
 Vue.use(VueRouter);
 
@@ -47,7 +47,7 @@ const routes = [
     path: '/create-recipe',
     name: 'CreateRecipe',
     component: CreateRecipeView,
-    meta: { requiresAuth: true } // Guarda de navegação: requer autenticação
+    meta: { requiresAuth: true }
   }
 ];
 
@@ -57,22 +57,21 @@ const router = new VueRouter({
   routes
 });
 
-// Guarda de navegação para verificar autenticação
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = store.getters.isAuthenticated; // Verifica a autenticação pela Vuex store
+  const isAuthenticated = store.getters.isAuthenticated; 
   
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!isAuthenticated) {
-      // Se não estiver autenticado, redirecione para a página de login
+    
       next({
         path: '/login',
         query: { redirect: to.fullPath }
       });
     } else {
-      next(); // Continuar para a rota protegida
+      next(); 
     }
   } else {
-    next(); // Rota pública, continuar normalmente
+    next(); 
   }
 });
 

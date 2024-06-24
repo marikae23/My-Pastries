@@ -1,5 +1,3 @@
-// backend/controllers/recipeController.js
-
 const Recipe = require('../models/Recipe');
 
 exports.createRecipe = async (req, res, next) => {
@@ -11,7 +9,7 @@ exports.createRecipe = async (req, res, next) => {
       ingredients,
       instructions,
       image,
-      creator: req.userData.userId, // userId extraído do token JWT
+      creator: req.userData.userId,
     });
     const result = await newRecipe.save();
     res.status(201).json({ message: 'Receita criada com sucesso.', recipe: result });

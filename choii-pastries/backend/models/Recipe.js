@@ -1,5 +1,3 @@
-// backend/models/Recipe.js
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

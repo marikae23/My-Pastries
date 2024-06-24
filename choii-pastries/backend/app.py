@@ -7,8 +7,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 CORS(app)
 
-# Conectar ao MongoDB
-client = MongoClient('mongodb://localhost:27017/')  # Substitua pela URI do seu MongoDB
+client = MongoClient('mongodb://localhost:27017/') 
 db = client['user_db']
 users = db['users']
 
